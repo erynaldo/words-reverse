@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inversor de Letras das Palavras</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+        }
+
+        textarea {
+            display: block;
+            padding: 10px;
+            margin-top: 5px;
+            width: 80%;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 20px;
+        }
+
+        #result {
+            margin-top: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="container">
+        <h2>Inversor de Letras das Palavras</h2>
+        <label for="inputText">Digite um texto ou palavra:</label>
+        <textarea id="inputText" rows="5"></textarea>
+        <button onclick="reverseWords()">Inverter Palavras</button>
+        <button onclick="clearTextarea()">Limpar</button>
+        
+        <div id="result"></div>
+    </div>
+    
+    <script>
+        function reverseWords() {
+            const inputText = document.getElementById('inputText').value;
+            const resultDiv = document.getElementById('result');
+            
+            // Limpa o resultado anterior
+            resultDiv.innerHTML = '';
+
+            if (inputText.trim() === '') {
+                resultDiv.innerHTML = '<span style="color: #ff0000;">Por favor, insira um texto ou palavra válida.</span>';
+                return;
+            }
+
+            // Divide o texto em palavras, inverte cada palavra e junta novamente
+            const words = inputText.split(' ');
+            const reversedWords = words.map(word => word.split('').reverse().join(''));
+            const resultText = reversedWords.join(' ');
+
+            // Exibe o resultado
+            resultDiv.innerHTML = `<h2>Resultado:</h2><p>${resultText}</p>`;
+        }
+
+        function clearTextarea() {
+            document.getElementById('inputText').value = '';
+            document.getElementById('result').innerHTML = '';
+        }
+    
+    </script>
+</body>
+</html>
